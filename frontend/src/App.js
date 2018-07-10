@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import { Provider } from 'react-redux';
 
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+import Landing from './components/layout/Landing';
 import Posts from './components/post/Posts';
-import PostForm from './components/post/PostForm';
+import Crumble from './components/crumble';
+import Project from './components/project';
+import Idea  from './components/idea';
+import Login from './components/auth/Login';
 
 import store from './store';
 
@@ -12,14 +18,19 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <h1 className="App-title">Welcome to Loaf</h1>
-          </header>
-          <PostForm />
-          <Posts />
-        </div>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route exact path="/" component={ Landing } />
+            <div className="container">
+              <Route exact path="/projects" component={ Project } />
+              <Route exact path="/ideas" component={ Idea } />
+              <Route exact path="/crumbles" component={ Crumble } />
+              <Route exact path="/login" component={ Login } />
+            </div>
+            <Footer />
+          </div>
+        </Router>
       </Provider>
     );
   }

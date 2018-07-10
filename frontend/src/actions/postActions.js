@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POSTS } from './types';
+import { FETCH_POSTS } from './types';
 
 export const fetchPosts = () => dispatch => {
 
