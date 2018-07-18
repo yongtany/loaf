@@ -1,0 +1,21 @@
+@import url(http://allfont.net/allfont.css?fonts=comic-sans-ms);
+
+$primary-color : #AC92EB;
+$bg-color : #333;
+
+body {
+    font-family: 'Comic Sans MS', arial;
+    background-color:$bg-color;
+    color: white;
+}
+
+.navbar {
+    font-size : 20px;
+    border-bottom: $primary-color 3px solid;
+    opacity: 0.8;
+}
+
+
+.nav_item {
+    margin-left : 30px;
+}

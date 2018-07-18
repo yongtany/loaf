@@ -67,6 +67,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    'taggit', #Tags for the photos
 ]
 LOCAL_APPS = [
     'loaf.users.apps.UsersAppConfig',
@@ -238,3 +239,4 @@ SOCIALACCOUNT_ADAPTER = 'loaf.users.adapters.SocialAccountAdapter'
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+TAGGIT_CASE_INSENSITIVE = True

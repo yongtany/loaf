@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import './App.css';
+import './App.scss';
 import { Provider } from 'react-redux';
 
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
-import Landing from './components/layout/Landing';
-import Posts from './components/post/Posts';
+import Navbar from './components/navbar';
+import Footer from './components/footer';
+import Landing from './components/landing';
 import Crumble from './components/crumble';
 import Project from './components/project';
 import Idea  from './components/idea';
