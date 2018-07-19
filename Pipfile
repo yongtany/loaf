@@ -32,6 +32,7 @@ factory_boy = "==2.11.1"
 django_coverage_plugin = "==1.5.0"
 django-taggit = "*"
 django-taggit-serializer = "*"
+django-rest-auth = "*"
 
 [dev-packages]
 pylint = "*"
