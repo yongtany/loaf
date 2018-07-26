@@ -4,13 +4,19 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
+from rest_framework_jwt.views import obtain_jwt_token
+from loaf import views
+
 
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
+    path("rest-auth/", include("rest_auth.urls")),
+    path("rest-auth/registration/", include("rest_auth.registration.urls")),
     path("users/", include("loaf.users.urls", namespace="users"),),
     path("projects/", include("loaf.projects.urls", namespace="projects"),),
+    path("", views.ReactAppView.as_view()),
 
     # Your stuff: custom urls includes go here
 ] + static(

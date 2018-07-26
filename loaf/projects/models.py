@@ -24,6 +24,8 @@ class Project(TimeStampedModel):
     tags = TaggableManager()
     score = models.IntegerField(default=0, null=True)
     members = models.ManyToManyField(user_models.User)
+    max_member = models.IntegerField(default=0)
+    schedule = models.CharField(default=0, max_length=140)
 
 
     @property
@@ -33,6 +35,10 @@ class Project(TimeStampedModel):
     @property
     def comment_count(self):
         return self.comments.all().count()
+
+    @property
+    def member_count(self):
+        return self.members.all().count()
 
     def __str__(self):
         return '{} - {}'.format(self.title, self.caption)
@@ -59,4 +65,4 @@ class Like(TimeStampedModel):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='likes')
 
     def __str__(self) :
-        return 'User: {} - Project Caption: {}'.format(self.creator.username, self.image.caption)
+        return 'User: {} - Project Caption: {}'.format(self.creator.username, self.project.caption)

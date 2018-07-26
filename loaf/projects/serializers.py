@@ -74,5 +74,22 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
             'creator',
             'tags',
             'score',
-            'members'
+            'members',
+            'max_member',
+            'schedule'
+        )
+
+class InputProjectSerializer(serializers.ModelSerializer):
+
+    tags = TagListSerializerField()
+
+    class Meta:
+        model = models.Project
+        fields = (
+            'file',
+            'title',
+            'caption',
+            'max_member',
+            'schedule',
+            'tags'
         )

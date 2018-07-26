@@ -1,0 +1,20 @@
+.footer {
+    max-width: 935px;
+    width: 95%;
+    margin: 55px auto;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+}
+
+.column {
+    margin-bottom: 15px;
+}
+
+.copyright {
+    color: #999;
+}

@@ -1,0 +1,14 @@
+@import url(http://allfont.net/allfont.css?fonts=comic-sans-ms);
+body {
+    font-family: 'Comic Sans MS', arial;
+}
+
+.navbar {
+    font-size : 20px;
+    border-bottom:#AC92EB 3px solid;
+}
+
+
+.nav-item {
+    margin-left : 30px;
+}
