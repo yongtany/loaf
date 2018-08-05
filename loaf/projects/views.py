@@ -30,7 +30,7 @@ class Projects(APIView):
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class LikeImage(APIView):
+class LikeProject(APIView):
 
     def get(self, request, project_id, fomat=None):
 
@@ -76,7 +76,7 @@ class LikeImage(APIView):
             return Response(status=status.HTTP_201_CREATED)
 
 
-class UnLikeImage(APIView):
+class UnLikeProject(APIView):
 
     def delete(self, request, project_id, format=None):
 
@@ -172,7 +172,7 @@ class ProjectDetail(APIView):
 
 class CommentOnProject(APIView):
 
-    def post(self, request, image_id, format=True):
+    def post(self, request, project_id, format=True):
 
         user = request.user
 
@@ -185,7 +185,7 @@ class CommentOnProject(APIView):
 
         if serializer.is_valid():
             
-            serializer.save(creator=user, image=found_image)
+            serializer.save(creator=user, project=found_project)
 
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 

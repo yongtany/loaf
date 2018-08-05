@@ -15,18 +15,27 @@ urlpatterns = [
     ),
     url(
         regex=r'^(?P<project_id>[0-9]+)/likes/$',
-        view=views.LikeImage.as_view(),
-        name="like_image"
+        view=views.LikeProject.as_view(),
+        name="like_project"
     ),
     url(
         regex=r'^(?P<project_id>[0-9]+)/unlikes/$',
-        view=views.UnLikeImage.as_view(),
-        name="unlike_image"
+        view=views.UnLikeProject.as_view(),
+        name="unlike_project"
     ),
     url(
         regex=r'comments/(?P<comment_id>[0-9]+)/$',
         view=views.Comment.as_view(),
         name="comment"
     ),
-      
+    url(
+        regex=r'^(?P<project_id>[0-9]+)/comments/(?P<comment_id>[0-9]+)/$',
+        view=views.ModerateComments.as_view(),
+        name="comment_project"
+    ),
+    url(
+        regex=r'^(?P<project_id>[0-9]+)/comments/$',
+        view=views.CommentOnProject.as_view(),
+        name="comment_project"
+    ),
 ]

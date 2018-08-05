@@ -18,7 +18,6 @@ class ExploreUsers(APIView):
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
-
 class FollowUser(APIView):
 
     def post(self, request, user_id, format=None):
@@ -201,6 +200,22 @@ class UserFollowers(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+class UserFollowing(APIView):
+
+    def get(self, request, username, format=None):
+
+        try:
+            found_user = models.User.objects.get(username=username)
+        except models.User.DoesNotExist :
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        user_following = found_user.following.all()
+
+        serializer = serializers.ListUserSerializer(
+            user_following, many=True, context={"request": request})
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 class ChangePassword(APIView):
 
     def put(self, request, username, format=None):
@@ -242,23 +257,6 @@ class ChangePassword(APIView):
         else:
             return Response(status=status.HTTP_400_BAD_REQUEST)
             
-
-class UserFollowing(APIView):
-
-    def get(self, request, username, format=None):
-
-        try:
-            found_user = models.User.objects.get(username=username)
-        except models.User.DoesNotExist :
-            return Response(status=status.HTTP_404_NOT_FOUND)
-
-        user_following = found_user.following.all()
-
-        serializer = serializers.ListUserSerializer(user_following, many=True)
-
-        return Response(data=serializer.data, status=status.HTTP_200_OK)
-
-
-
+            
 class FacebookLogin(SocialLoginView):
     adapter_class = FacebookOAuth2Adapter

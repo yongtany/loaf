@@ -7,8 +7,9 @@ import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Landing from '../Landing';
 import Members from '../Members';
-import Projects from '../Projects';
+//import Projects from '../Projects';
 import Mypage from '../Mypage';
+import MyProfile from '../MyProfile';
 import Auth from '../Auth';
 
 
@@ -26,7 +27,7 @@ App.propTypes = {
     <Switch>
         <Route exact path="/" component={Landing} />
         <Route exact path="/mypage" component={Mypage} />
-        <Route exact path="/projects" component={Projects} />
+        <Route exact path="/profile" component={MyProfile} />
         <Route exact path="/members" component={Members} />
     </Switch>
 );
@@ -34,7 +35,7 @@ App.propTypes = {
 const PublicRoutes = props => (
     <Switch>
         <Route exact path="/" component={Auth} />
-        <Route exact path="/projects" component={Projects} />
+        
     </Switch>
 );
 

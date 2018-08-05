@@ -1,0 +1,65 @@
+.container1 {
+    margin-top: 50px;
+    background-color: #f3f3ef;
+    width: 50%;
+}
+.hr {
+    width: 70%;
+}
+.hrbutton {
+    width: 70%;
+    margin-bottom: 10px;   
+}
+.name {
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+}
+.area {
+    width: 100%;
+    font-size: 18px;
+    margin-top: 15px;
+    text-align: center;
+}
+.univ {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+}
+.ma {
+    width: 100%;
+    font-size: 18px;
+    text-align: center; 
+}
+.intromy {
+    width: 100%;
+    font-size: 18px;
+    text-align: center; 
+}
+.btn {
+    margin-top: 10px;
+    background-color: #ac92eb;
+    border: none;
+}
+.btnDiv {
+    width: 100%;
+    text-align: center;
+}
+.project {
+    margin-top: 0px;
+    width: 50%;
+    background-color: #d8d8d8;
+    border-radius: 5px;
+    margin: 0 auto;
+}
+.learn {
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+}
+.interest{
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+}

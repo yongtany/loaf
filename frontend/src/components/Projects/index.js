@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
-//import styles from './styles.scss';
+import { connect } from 'react-redux';
+import Container from './container';
+import { actionCreators as projectActions } from '../../redux/modules/photos';
 
-class Projects extends Component {
-    render() {
-        return (
-            <div className="container">
-                <h1>
-                    Project page
-                </h1>
-            </div>
-        )
+const mapStateToProps = (state, ownProps) => {
+    const { photos: { feed } } = state;
+    return {
+        feed
     }
 }
 
-export default Projects;
+const mapDispatchToProps = ( dispatch, ownProps ) => {
+    return {
+        getProjects: () => {
+            dispatch(projectActions.getProjects());
+        }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Container);

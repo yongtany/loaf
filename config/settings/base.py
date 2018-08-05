@@ -240,6 +240,13 @@ ACCOUNT_ADAPTER = 'loaf.users.adapters.AccountAdapter'
 SOCIALACCOUNT_ADAPTER = 'loaf.users.adapters.SocialAccountAdapter'
 
 
+# Custom user app defaults
+# Select the correct user model
+AUTH_USER_MODEL = 'users.User'
+
+# SLUGLIFIER
+AUTOSLUG_SLUGIFY_FUNCTION = 'slugify.slugify'
+
 # Your stuff...
 # ------------------------------------------------------------------------------
 TAGGIT_CASE_INSENSITIVE = True
@@ -261,3 +268,13 @@ SOCIALACCOUNT_QUERY_EMAMIL = True
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10240
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+JWT_AUTH = {
+    'JWT_VERIFY_EXPIRATION' : False
+}
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    'REGISTER_SERIALIZER': 'loaf.users.serializers.SignUpSerializer'
+}
+
+

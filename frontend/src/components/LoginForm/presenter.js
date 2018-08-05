@@ -39,7 +39,7 @@ const LoginForm = (props) => (
             </Form>
             <span>
                     <FacebookLogin
-                        appId="1036887976475124"
+                        appId="212789132758801"
                         autoLoad={false}
                         fields="name,email,picture"
                         callback={props.handleFacebookLogin}
