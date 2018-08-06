@@ -25,6 +25,7 @@ class FeedUserSerializer(serializers.ModelSerializer):
         fields = (
             'username',
             'profile_image',
+            'address',
             'bio'
         )
 

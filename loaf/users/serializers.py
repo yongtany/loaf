@@ -55,12 +55,13 @@ class InputProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = (
+            'profile_image',
             'address',
             'school',
             'major',
+            'website',
             'bio',
-            'tags',
-            'profile_image'
+            'tags',   
         )
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Form, Label} from 'reactstrap';
 import './styles.css'
 import  {Link} from 'react-router-dom';
-import Loading from 'components/Loading';
+import Loading from 'components/Loading/Spinner';
 
 
 

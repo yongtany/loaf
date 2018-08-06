@@ -33,4 +33,9 @@ urlpatterns = [
         view=views.UserFollowing.as_view(),
         name='user_following'
     ),
+    url(
+        regex=r'^(?P<username>\w+)/recommand/$',
+        view=views.RecommandMember.as_view(),
+        name='user_recommand'
+    ),
 ]

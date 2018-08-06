@@ -119,7 +119,7 @@ class UserProfile(APIView):
 
             else :
 
-                return Response(data=serializer.data, status=statsu.HTTP_400_BAD_REQUEST)
+                return Response(data=serializer.data, status=status.HTTP_400_BAD_REQUEST)
 
     def put(self, request, username, format=None):
 
@@ -200,6 +200,7 @@ class UserFollowers(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+
 class UserFollowing(APIView):
 
     def get(self, request, username, format=None):
@@ -215,6 +216,7 @@ class UserFollowing(APIView):
             user_following, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 
 class ChangePassword(APIView):
 
@@ -260,3 +262,38 @@ class ChangePassword(APIView):
             
 class FacebookLogin(SocialLoginView):
     adapter_class = FacebookOAuth2Adapter
+
+
+
+class RecommandMember(APIView):
+
+    def get_tags(self, tags):
+
+        try:
+            found_tags = models.User.obejects.get(tags=tags)
+            return found_tags
+        except models.User.DoesNotExist:
+            return None
+
+    def get(self, request, tags, format=None):
+
+        found_tags = self.get_tags(tags)
+
+        if found_tags is None :
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        all_users_tags = models.User.objects.all().get_tags(tags)
+
+        recommand_users = found_user.tags.similar_objects()
+
+        
+
+    
+
+        
+
+        
+
+
+
+

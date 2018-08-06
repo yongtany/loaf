@@ -6,11 +6,12 @@ import { Route, Switch } from 'react-router-dom';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
 import Landing from '../Landing';
-import Members from '../Members';
+//import Members from '../Members';
 //import Projects from '../Projects';
 import Mypage from '../Mypage';
 import MyProfile from '../MyProfile';
 import Auth from '../Auth';
+import ProjectFeed from '../ProjectFeed';
 
 
 const App = props  => [
@@ -28,7 +29,7 @@ App.propTypes = {
         <Route exact path="/" component={Landing} />
         <Route exact path="/mypage" component={Mypage} />
         <Route exact path="/profile" component={MyProfile} />
-        <Route exact path="/members" component={Members} />
+        <Route exact path="/projects" component={ProjectFeed} />
     </Switch>
 );
 

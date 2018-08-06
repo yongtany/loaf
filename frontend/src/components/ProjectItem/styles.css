@@ -1,0 +1,39 @@
+.project_card{
+    width: 340px;
+    height: 280px;
+    margin-left: 5%;
+    background-color: rgba( 211, 211, 211, 0.8 );
+    display: grid;
+    grid-template-rows: 30px 200px 50px;
+  }
+  .projectItem_intro1{
+    text-align: right;
+    font-size: 1rem;
+    margin-top:1.3%; 
+    margin-right: 2%;
+  }
+  .projectItem_img{
+    width: 340px;
+    height: 200px;
+  }
+  .project_summary{
+    display: grid;
+    grid-template-columns: 50px 190px 100px;
+  }
+  .projectItem_creator_img{
+    width: 43px;
+    height: 43px;
+    margin-left: 7%;
+    margin-top: 10%;
+    border-radius: 50%;
+  }
+  .projectItem_title{
+    margin-top: 7%;
+    margin-left: 5%;
+    font-size: 0.8rem;
+  }
+  .max_member{
+    margin-top: 13%;
+    margin-left: 5%;
+    font-size: 0.8rem;
+  }

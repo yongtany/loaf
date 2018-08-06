@@ -9,7 +9,7 @@ const SET_PROJECT = "SET_PROJECT";
 
 // action creators
 
-function setFeed(feed) {
+function setFeed(feed){
     return {
         type: SET_FEED,
         feed
@@ -26,9 +26,9 @@ function setProject(projectId){
 
 // api actions
 
-function getFeed(){
+function getFeed(){//전체 프로젝트 가져오기
     return (dispatch, getState) => {
-        const { user : { token } } = getState();
+        const { users : { token } } = getState();
         fetch("/projects/", {
             method: "GET",
             headers: {
@@ -84,7 +84,7 @@ function reducer(state= initialState, action) {
 
 // reducer functions
 
-function applySetFeed(state, action){
+function applySetFeed(state, action) {
     const { feed } = action;
     return {
         ...state,
