@@ -26,7 +26,8 @@ class FeedUserSerializer(serializers.ModelSerializer):
             'username',
             'profile_image',
             'address',
-            'bio'
+            'bio',
+            'school'
         )
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -77,6 +78,7 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
             'tags',
             'score',
             'members',
+            'member_count',
             'max_member',
             'schedule'
         )

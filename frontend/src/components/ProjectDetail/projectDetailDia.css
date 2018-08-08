@@ -1,0 +1,96 @@
+.container1{
+    margin-left:25%;
+    margin-right:25%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-color:ivory;
+    border-radius: 5%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); /* 그림자 */ 
+}
+.index{
+    text-align: right;
+    margin-right: 5%;
+    font-size: 1rem;
+}
+.project_img{
+    width: 100%;
+    height: 300px;
+}
+
+.title{
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+.count{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.btn{
+    background-color:transparent;
+    color:blueviolet;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1%;
+    outline: none;
+  border: none;
+  
+}
+.creator{
+    display: grid;
+    grid-template-columns: 200px 300px;
+    background-color: #d8d8d8;
+}
+.apply_btn{
+}
+.creator_img{
+    width: 140px;
+    height: 140px;
+    margin: 15%;
+    border-radius: 50%;
+}
+.creator_name{
+    margin-top: 10%;
+    font-size: 1rem;
+}
+.name{
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+.creator_bio{
+    margin-left: 5%;
+}
+.project_body{
+    text-align: left;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.intro1{
+    font-size: 1.5rem;
+}
+.project_caption{
+    font-size: 1rem;
+    margin-left: 5%
+}
+.member{
+    background-color: lightgrey;
+    display: grid;
+    grid-template-columns: 130px 100px 100px
+}
+.intro2{
+    margin: 30%;
+    font-weight: bold;
+}
+.member_photo{
+    width: 70px;
+    height: 70px;
+    margin: 15%;
+}
+.interest{
+ margin-left: 5%;
+ font-size: 1.3rem;
+}
+.intro3{
+    margin-top: 1%;
+   font-size: 1rem;
+}

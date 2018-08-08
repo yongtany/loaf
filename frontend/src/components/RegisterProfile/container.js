@@ -1,0 +1,70 @@
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import RegisterProfile from './presenter';
+
+
+class Container extends Component {
+    state = {
+        profile_image: [],
+        address: "",
+        school: "",
+        major: "",
+        website: "",
+        bio: "",
+        tags: [],
+       
+    };
+
+    static propTypes ={
+        createProfile : PropTypes.func.isRequired
+    };
+    
+    _onDrop(profile_image) {
+        this.setState({
+            profile_image: this.state.profile_image.concat(profile_image),
+        });
+    }
+
+    onDrop = this.onDrop.bind(this);
+    
+    render() {
+        const { address, school, major, website, bio, tags} = this.state;
+        return(
+            <RegisterProfile
+                onDrop = {this._onDrop}
+                addressValue = {address}
+                schoolValue = {school}
+                majorValue = {major}
+                websiteValue = {website}
+                bioValue = {bio}
+                tags = {tags}
+                tagsValue = { this._handleUpdateTags}
+                handleInputChange={this._handleInputChange}
+                handleSubmit={this._handleSubmit}
+            />
+        )
+    };
+
+    _handleUpdateTags = (tags) => {
+        this.setState({ tags });
+    }
+
+    _handleInputChange = event => {
+        const { target : { value, name}} = event;
+        this.setState({
+            [name] : value
+        });
+    }
+    _handleSubmit = event => {
+        const { createProfile } = this.props;
+        const { profile_image, address, school, major, website, bio, tags } = this.state;
+        event.preventDefault();
+ //       let formData = new FormData();
+ //       formData.append('file', this.state.file);
+        // redux will be here
+        createProfile(profile_image, address, school, major, website, bio, tags);
+    }
+
+}
+
+export default Container;

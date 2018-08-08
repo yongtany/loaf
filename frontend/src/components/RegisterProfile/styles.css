@@ -3,37 +3,29 @@
     margin-right:25%;
     margin-top: 5%;
     background-color:#f3f3ef;
-    border-top-left-radius: 5%;
-    border-top-right-radius: 5%;
+    border-radius: 5%;
 }
-.container2{
-    margin-left:25%;
-    margin-right:25%;
-    margin-bottom: 5%;
-    background-color:#d8d8d8;
-    border-bottom-left-radius: 5%;
-    border-bottom-right-radius: 5%;
-}
+
 .index{
     text-align: right;
     margin-right: 5%;
     font-size: 1rem;
 }
+
 .img {
-    text-align: center;
-}
-.creator_img{
-    width: 140px;
+    margin: 0 auto;
+    width: 180px;
     height: 140px;
     margin-top: 10%;
     border-radius: 50%;
+    background-color: #ac94e9;
 }
+
 .creator_name{
     margin-top: 10%;
     font-size: 1rem;
 }
-.name{
-    font-size: 1.3rem;
+.text{
     font-weight: bold;
     text-align: center;
     margin-top: 7px;
@@ -62,4 +54,16 @@
 }
 .interest {
     text-align: center;
+}
+.tag {
+    background-color:#d8d8d8;   
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    margin-bottom: 5%;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 7px;
+}
+.btn {
+    margin-bottom: 10px;
 }

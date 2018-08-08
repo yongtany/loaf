@@ -1,0 +1,95 @@
+@import url(//fonts.googleapis.com/earlyaccess/jejugothic.css);
+
+.logo{
+    margin-top: 2%;
+    margin-left: 20%;
+}
+
+.navbar{
+    font-family: 'Jeju Gothic';
+    background-color: #ffffff;
+    color: #ffffff;
+    align-content:center;
+}
+
+.navmain{
+    text-align: center;
+    padding-left: 20%;
+}
+
+
+.navlink{
+    padding-right: 30%;
+    padding-left: 10%;
+    display: inline;
+    font-size: large;
+    font-weight: bold;
+    color: black;
+
+}
+
+
+.navitem{
+    padding-left: 0%;
+    padding-right: 0%;
+    padding-top: 2%;
+    margin-right: 10%;
+    margin-left: 10%;
+    display: inline;
+    white-space:nowrap;
+    text-align: center;
+    font-size: large;
+    font-weight: bold;
+    color: black;
+}
+
+.navbar.p{
+    align-content: center;
+
+}
+
+
+.uncontrolleddropdown{
+    padding-left: 10%;
+    padding-right: 10%;
+    margin-right: 0%;
+    margin-left: 0%;
+    white-space:nowrap;
+    font-size: medium;
+    font-size: large;
+    text-align: center;
+    font-weight: bold;
+    color: black;
+}
+
+.dropdowntoggle{
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-right: 0%;
+    margin-left: 0%;
+    text-align: center;
+
+
+}
+
+.navitem_col{
+    
+    white-space:nowrap;
+
+}
+
+.dropdownmenu{
+    text-align: center;
+    align-content: center;
+    font-weight: bold;
+    font-size: large;
+}
+
+.dropdownitem{
+    text-align: center;
+    align-content: center;
+    font-weight: bold;
+    font-size: large;
+
+}
+

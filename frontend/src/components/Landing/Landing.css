@@ -1,0 +1,110 @@
+.page1{
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.5), 
+        rgba(0, 0, 0, 0.5)
+      ), url('../../images/page1.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    
+}
+.page1_title{
+    font-size: 50px;
+    color: white;
+    text-align: left;
+    padding-left: 30%;
+}
+.page1_text{
+    font-size: 30px;
+    color: white;
+    text-align: left;
+    padding-left: 35%;
+}
+
+.page2_title{
+    font-size: 50px;
+    color: rgb(41, 39, 39);
+    text-align: left;
+    padding-left: 5%;
+}
+.page2_btn{
+    margin-left: 5%;
+}
+.page2_text{
+    font-size: 15px;
+    color: rgb(41, 39, 39);
+    text-align: left;
+    padding-left: 5%;
+}
+.page3{
+    background-image:  url('../../images/page5.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.page3_title{
+    font-size: 50px;
+    color: white;
+    text-align: left;
+    padding-left: 60%;
+}
+.page3_btn{
+    margin-left: 60%;
+}
+.page3_text{
+    font-size: 15px;
+    color:white;
+    text-align: left;
+    padding-left: 60%;
+}
+.page4{
+    background-image: url('../../images/page6.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.page4_title1{
+    font-size: 50px;
+    color: white;
+    text-align: right;
+    padding-right: 15%;
+    
+}
+
+.page4_text1{
+    font-size: 20px;
+    color:white;
+    text-align: right;
+    padding-right: 15%;
+    
+    
+}
+.page4_title2{
+    font-size: 50px;
+    color: white;
+    text-align: right;
+    padding-right: 43%;
+   
+}
+
+.page4_text2{
+    font-size: 20px;
+    color:white;
+    text-align: right;
+    padding-right: 43%;
+
+    
+    
+}
+.page4_title3{
+    font-size: 50px;
+    color: white;
+    text-align: right;
+    padding-right: 75%;
+   
+}
+
+.page4_text3{
+    font-size: 20px;
+    color:white;
+    text-align: right;
+    padding-right: 75%;
+}
+

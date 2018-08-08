@@ -11,7 +11,7 @@ class ExploreUsers(APIView):
 
     def get(self, request, format=None):
 
-        all_users = models.User.objects.all().order_by('-date_joined')[:5]
+        all_users = models.User.objects.all().order_by('-date_joined')
 
         serializer = serializers.ListUserSerializer(all_users, many=True)
 
@@ -185,6 +185,7 @@ class UnFollowUser(APIView):
 
         return Response(status=status.HTTP_200_OK)
 
+
 class UserFollowers(APIView):
 
     def get(self, request, username, format=None):
@@ -265,26 +266,38 @@ class FacebookLogin(SocialLoginView):
 
 
 
-class RecommandMember(APIView):
+class RecommandUser(APIView):
 
-    def get_tags(self, tags):
+    def get(self, request, format=None):
+        
+        user = request.user
 
-        try:
-            found_tags = models.User.obejects.get(tags=tags)
-            return found_tags
-        except models.User.DoesNotExist:
-            return None
+        loafadmin = models.User.objects.filter(username="loafadmin")
 
-    def get(self, request, tags, format=None):
+        all_users_tags = []
 
-        found_tags = self.get_tags(tags)
+        print(loafadmin.address)
 
-        if found_tags is None :
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        ##for i in all_users:
+        ##    all_users_tags.append(all_users[i].tags.all())
 
-        all_users_tags = models.User.objects.all().get_tags(tags)
+        ##print(all_users_tags)
 
-        recommand_users = found_user.tags.similar_objects()
+        serializer = serializers.UserProfileSerializer(loafadmin, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+        
+        
+
+
+        
+
+
+
+        
+
+
 
         
 

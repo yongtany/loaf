@@ -2,8 +2,6 @@ import React from 'react';
 import { Button, Form, Label} from 'reactstrap';
 import './styles.css'
 import  {Link} from 'react-router-dom';
-import Loading from 'components/Loading/Spinner';
-
 
 
 const MyProfile = (props) => {
@@ -12,51 +10,62 @@ const MyProfile = (props) => {
     return (
       <div>
         <div className="container1">
-          <h4 className="projectTitle"> My Profile </h4>
+          <div className="header">
+          <p className="index">
+            MyProfile
+          </p>
+          <div className="img">
           <img 
-            className="rounded-circle img-fluid d-block mx-auto" 
+            className="creator_img" 
             src={loggedInUser.profile_image}
             alt={loggedInUser.name}
-          /> 
+          />
+          </div>
+          </div>          
           <Form>
-            <Label for="text" className="name">이름</Label>
-            <div>{loggedInUser.username}</div>
+            <div className="name">
+            <Label for="text">{loggedInUser.username}</Label>
+            </div>
             <br/>
-            <Label for="text" className="area">지역
-            <div>{loggedInUser.address}</div>
-            <hr className="hr"/>
+            <div className="area"><Label for="text">{loggedInUser.address}
             </Label>
+            </div>
+            <hr className="hr"/>
             <br/>
-            <Label for="text" className="univ">소속 대학교 / 학과
-            <div>{loggedInUser.school} {loggedInUser.major} </div>
-            <hr className="hr"/>
+            <div className="univ">
+            <Label for="text">{loggedInUser.school} {loggedInUser.major} 
             </Label>
+            </div>
+            <hr className="hr"/>
             <br/>
-            <Label for="exampleText" className="intromy">자기소개
-            <div>{loggedInUser.bio}</div>
-            <hr className="hr"/>
+            <div className="intromy">
+            <Label for="exampleText">
+            {loggedInUser.bio}
             </Label>
+            </div>
+            <hr className="hr"/>
             <br/>
             <br/>
           </Form>
         </div>
-        <div className ="project">
+        <div className ="container2">
           <div className="btnDiv">
           <Link to="/Friends/FriendsDetail">
             <Button className="btn">프로젝트 경험</Button>
           </Link>
           </div>
           <br/>
-          <Label for="exampleText" className="interest">관심분야</Label>
-          <div>{loggedInUser.tags}</div>
-          <hr className="hrbutton"/>
+          <div className="interest">
+          <p>관심분야 : {loggedInUser.tags}</p>
+          </div>
+          <hr className="hr"/>
+          <br/>
         </div>
       </div>
     );
   } else {
     return (
       <div>
-        <Loading />
       </div>
     )
   }

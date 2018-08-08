@@ -8,13 +8,13 @@ class Projects(APIView):
 
     def get(self, request, format=None):
 
-        last_five = models.Project.objects.all().order_by('-created_at')[:5]
+        last_five = models.Project.objects.all().order_by('-created_at')
 
         serializer = serializers.ProjectSerializer(last_five, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request, format=None):
+    def post(self, request, format='json'):
 
         user = request.user
 

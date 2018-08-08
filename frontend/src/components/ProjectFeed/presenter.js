@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Loading from '../Loading/Spinner';
 import ProjectsItem from '../ProjectItem';
 
-const Feed = props => {
+const ProjectFeed = props => {
     if(props.loading) {
         return <LoadingFeed />
     } else if(props.feed){
@@ -29,8 +29,8 @@ const RenderFeed = props => (
     </div>
 )
 
-Feed.propTypes = {
+ProjectFeed.propTypes = {
     loading: PropTypes.bool.isRequired
 };
 
-export default Feed;
+export default ProjectFeed;
