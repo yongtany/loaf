@@ -15,15 +15,15 @@ const RegisterProfile = (props) => {
         </div>  
         <Form onSubmit = {props.handleSubmit}>
             <div className="img">
-            <ImageUploader
-                className="creator"
-                withIcon={true}
-                buttonText='Choose images'
-                name="file" 
-                onChange={props.onDrop}
-                imgExtension={['.jpg', '.jpeg', '.gif', '.png', '.gif', '.PNG']}
-                maxFileSize={52428800}
-            />
+                <ImageUploader
+                    className="creator"
+                    withIcon={true}
+                    buttonText='Choose images'
+                    name="file" 
+                    onChange={props.onDrop}
+                    imgExtension={['.jpg', '.jpeg', '.gif', '.png', '.gif', '.PNG']}
+                    maxFileSize={52428800}
+                />
             </div>
             <br/>
             <br/>

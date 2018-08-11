@@ -13,7 +13,7 @@ const ProjectsItem = (props) => {
             <div className = "header">
             <p className = "projectItem_intro1">Project</p>
             </div>
-            <Link to = "/projects/projectDetail">
+            <Link to = {`/projects/${props.id}`}>
             <div>
             <img 
                 className = "projectItem_img"

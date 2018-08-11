@@ -8,24 +8,20 @@ class Container extends Component {
         file: "",//프로젝트 이미지
         title : "",//프로젝트 제목
         caption: "",//프로젝트 내용
-        max_member: 0,//모집인원
+        max_member: "",//모집인원
         schedule: "",//시작날짜
-        //end_schedule: "",//끝날짜
-        tags:[ ],//관심분야
-        pictures: []
+        tags:[],//관심분야
     };
 
     static propTypes ={//!!
         createProject: PropTypes.func.isRequired
     };
 
-    onDrop(picture) {
+    onDrop() {
         this.setState({
-            pictures: this.state.pictures.concat(picture),
+            file: this.state.file
         });
     }
-
-    onDrop = this.onDrop.bind(this);
     
     render() {
         const { file, title, caption, max_member, schedule, tags } = this.state;
@@ -34,11 +30,10 @@ class Container extends Component {
             porjectImg={file}
             projectTitle={title}
             projectContent={caption}
-            project_member={max_member}
+            max_member={max_member}
             schedule={schedule}
-          //  endDate={end_schedule}
             tags={tags}
-            tagsValue={this._handleUpdateTags}
+            //tagsValue={this._handleUpdateTags}
             handleInputChange={this._handleInputChange}
             handleSubmit={this._handleSubmit}
             onFileLoaded={this._handleLoadLocalFile}
@@ -57,12 +52,15 @@ class Container extends Component {
         const {file, title, caption, max_member, schedule, tags } = this.state;
         event.preventDefault();
         // redux will be here
-        createProject(file, title, caption, max_member, schedule, tags);    
+        createProject(file, title, caption, max_member, schedule, tags);
+        
+        console.log(this.state);
     }
 
-    _handleUpdateTags = (tags) => {
+    /*_handleUpdateTags = (tags) => {
         this.setState({ tags });
     }
+    */
 
     _handleLoadLocalFile = event => {
         event.preventDefault();
@@ -77,7 +75,6 @@ class Container extends Component {
             alert('File uploaded is not valid.');
         }
     }
-
 }
 
 export default Container;

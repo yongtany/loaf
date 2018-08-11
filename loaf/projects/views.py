@@ -14,7 +14,7 @@ class Projects(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request, format='json'):
+    def post(self, request, format=None):
 
         user = request.user
 

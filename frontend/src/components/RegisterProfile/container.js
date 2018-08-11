@@ -4,34 +4,28 @@ import RegisterProfile from './presenter';
 
 
 class Container extends Component {
+    
     state = {
-        profile_image: [],
+        file : '',
+        profile_image: "",
         address: "",
         school: "",
         major: "",
         website: "",
         bio: "",
-        tags: [],
-       
+        tags: [],   
     };
 
     static propTypes ={
         createProfile : PropTypes.func.isRequired
     };
     
-    _onDrop(profile_image) {
-        this.setState({
-            profile_image: this.state.profile_image.concat(profile_image),
-        });
-    }
-
-    onDrop = this.onDrop.bind(this);
+    
     
     render() {
         const { address, school, major, website, bio, tags} = this.state;
         return(
             <RegisterProfile
-                onDrop = {this._onDrop}
                 addressValue = {address}
                 schoolValue = {school}
                 majorValue = {major}
