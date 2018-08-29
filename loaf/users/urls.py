@@ -10,6 +10,11 @@ urlpatterns = [
     ),
     url(
         regex=r'^recommand/$',
+        view=views.UsersRecommand.as_view(),
+        name='recommand_users'
+    ),
+    url(
+        regex=r'^(?P<username>\w+)/recommand/$',
         view=views.RecommandUser.as_view(),
         name='user_recommand'
     ),

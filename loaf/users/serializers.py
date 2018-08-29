@@ -64,6 +64,15 @@ class InputProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
             'tags',   
         )
 
+class JoinMemberSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.User
+        fields = (
+            'username',
+            'profile_image',
+        )
+
 
 class SignUpSerializer(RegisterSerializer):
 
@@ -86,3 +95,4 @@ class SignUpSerializer(RegisterSerializer):
         setup_user_email(request, user, [])
         user.save()
         return user
+        

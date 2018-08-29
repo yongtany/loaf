@@ -48,6 +48,17 @@ class LikeSerializer(serializers.ModelSerializer):
         model = models.Like
         fields = '__all__'
 
+class JoinSerializer(serializers.ModelSerializer):
+
+    creator = FeedUserSerializer(read_only=True)
+
+    class Meta:
+        model = models.Join
+        fields = (
+            'id',
+            'creator',
+        )
+
 class MemberSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -62,8 +73,7 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
     comments = CommentSerializer(many=True)
     creator = FeedUserSerializer()
     tags = TagListSerializerField()
-    members = MemberSerializer(many=True)
-    
+    join = JoinSerializer(many=True)
 
     class Meta:
         model = models.Project
@@ -77,7 +87,7 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
             'creator',
             'tags',
             'score',
-            'members',
+            'join',
             'member_count',
             'max_member',
             'schedule'

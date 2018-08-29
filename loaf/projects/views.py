@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from . import models, serializers
+from loaf.users import models as user_models
+from loaf.users import serializers as user_serializers
 
 # Create your views here.
 class Projects(APIView):
@@ -50,14 +52,14 @@ class LikeProject(APIView):
         user = request.user
 
         try:
-            found_image = models.Image.objects.get(id=project_id)
-        except models.Image.DoesNotExist:
+            found_project = models.Project.objects.get(id=project_id)
+        except models.Project.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
 
         try:
             preexisiting_like = models.Like.objects.get(
                 creator=user,
-                image=found_image
+                project=found_project
             )
             return Response(status=status.HTTP_304_NOT_MODIFIED)
 
@@ -65,11 +67,11 @@ class LikeProject(APIView):
 
             new_like = models.Like.objects.create(
                 creator=user,
-                image=found_image
+                project=found_project
             )
 
             notification_view.create_notification(
-                user, found_image.creator, 'like', found_image)
+                user, found_project.creator, 'like', found_project)
 
             new_like.save()
 
@@ -211,6 +213,69 @@ class Comment(APIView):
 
             return Response(status=status.HTTP_404_NOT_FOUND)
 
+class JoinProject(APIView):
+
+    def get(self, request, project_id, fomat=None):
+
+        members = models.Join.objects.filter(project_id=project_id)
+
+        join_members_ids = members.values('creator_id')
+
+        users = user_models.User.objects.filter(id__in=join_members_ids)
+
+        serializer = user_serializers.JoinMemberSerializer(users, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+    def post(self, request, project_id, format=None):
+
+        user = request.user
+
+        try:
+            found_project = models.Project.objects.get(id=project_id)
+        except models.Project.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        try:
+            preexisiting_join = models.Join.objects.get(
+                creator=user,
+                project=found_project
+            )
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
+
+        except models.Join.DoesNotExist:
+
+            new_join = models.Join.objects.create(
+                creator=user,
+                project=found_project
+            )
+
+            new_join.save()
+
+            return Response(status=status.HTTP_201_CREATED)
+
+
+class RecommandProject(APIView):
+
+    def get(slef, request, formnat=None):
+
+        user = request.user
+
+        print(user)
+
+        return None
+
+
+class ProjectsRecommand(APIView):
+
+    def get(self, request, format=None):
+
+        recommand = models.Project.objects.all().reverse()[1:4]
+
+        serializer = serializers.ProjectSerializer(recommand, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
         
         

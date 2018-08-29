@@ -272,20 +272,27 @@ class RecommandUser(APIView):
         
         user = request.user
 
-        loafadmin = models.User.objects.filter(username="loafadmin")
-
-        all_users_tags = []
-
-        print(loafadmin.address)
+        print(user.address)
 
         ##for i in all_users:
-        ##    all_users_tags.append(all_users[i].tags.all())
+           ## all_users_tags.append(all_users[i].tags.all())
 
         ##print(all_users_tags)
 
-        serializer = serializers.UserProfileSerializer(loafadmin, many=True)
+        serializer = serializers.UserProfileSerializer(user, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+class UsersRecommand(APIView):
+
+    def get(self, request, format=None):
+
+        recommand = models.User.objects.all().reverse()[1:4]
+
+        serializer = serializers.ListUserSerializer(recommand, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
 
         
         

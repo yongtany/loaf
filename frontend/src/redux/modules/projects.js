@@ -18,17 +18,17 @@ function setFeed(feed){
     };
 }
 
-function setProject(projectId){
+function setProject(project){
     return {
         type : SET_PROJECT,
-        projectId
+        project
     }
 }
 
-function addComment(photoId, comment){
+function addComment(projectId, comment){
     return {
         type: ADD_COMMENT,
-        photoId,
+        projectId,
         comment
     };
 }
@@ -99,6 +99,7 @@ function getProject(projectId){
     };
 };
 
+
 function createProject(file, title, caption, max_member, schedule,  tags){
     const tagsArray = tags.split(",");
     const data = new FormData();
@@ -152,6 +153,7 @@ function reducer(state= initialState, action) {
             return state;
     }
 }
+
 function applyAddComment(state, action){
     const { projectId, comment } = action;
     const { feed } = state;
@@ -179,15 +181,11 @@ function applySetFeed(state, action) {
 }
 
 function applySetProject(state, action) {
-    const { projectId } = action;
+    const { project} = action;
     return {
-        ...state,
-        projectId
+        project
     }
 }
-
-
-
 
 // exports
 

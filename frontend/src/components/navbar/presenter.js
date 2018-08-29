@@ -30,7 +30,7 @@ const Navbar = (props) => (
                     </Link>
                     <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                       <Link className="dropdown-item" to="/profile">내 프로필</Link>
-                      <Link className="dropdown-item" to="#">로그아웃</Link>
+                      <Link className="dropdown-item" to="/" onClick={props.onClick}>로그아웃</Link>
                     </div>
                   </li>
                 </ul>

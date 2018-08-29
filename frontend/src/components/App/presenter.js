@@ -7,13 +7,13 @@ import Footer from '../Footer';
 import Landing from '../Landing';
 import Members from '../Members';
 import Navbar from '../Navbar';
-//import Projects from '../Projects';
 import MyProfile from '../MyProfile';
 import Auth from '../Auth';
 import RegisterProfile from '../RegisterProfile';
 import RegisterProject from '../RegisterProject';
 import ProjectFeed from '../ProjectFeed';
 import ProjectDetail from '../ProjectDetail';
+//import Detail from '../Detail';
 
 
 const App = props  => [
@@ -33,7 +33,7 @@ App.propTypes = {
         <Route exact path="/profile/registerProfile" component={RegisterProfile} />  
         <Route exact path="/project/registerProject" component={RegisterProject} />      
         <Route exact path="/projects" component={ProjectFeed}/>
-        <Route exact path="/projects/:id" component={ProjectDetail}/>       
+        <Route exact path="/projects/:id" component={ProjectDetail}/>        
     </Switch>
 );
 
