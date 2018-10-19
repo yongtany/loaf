@@ -54,8 +54,25 @@ urlpatterns = [
         name="join_project"
     ),
     url(
-        regex=r'^(?P<username>\w+)/$',
-        view=views.JoinProject.as_view(),
-        name="join_project"
+        regex=r'^(?P<project_id>[0-9]+)/apt/$',
+        view=views.AptView.as_view(),
+        name='project_apt'
     ),
+    url(
+        regex=r'^(?P<project_id>[0-9]+)/confirm/(?P<join_id>[0-9]+)/$',
+        view=views.DropMember.as_view(),
+        name="confirm_member"
+    ),
+    #시작된 프로젝트
+    url(
+        regex=r'^(?P<project_id>[0-9]+)/ongoing/$',
+        view=views.OngoingProject.as_view(),
+        name="ongoning_project"
+    ),
+    url(
+        regex=r'^(?P<project_id>[0-9]+)/complete/$',
+        view=views.CompletedProject.as_view(),
+        name="completed_project"
+    ),
+    
 ]

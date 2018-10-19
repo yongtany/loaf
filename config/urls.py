@@ -16,6 +16,7 @@ urlpatterns = [
     path("rest-auth/registration/", include("rest_auth.registration.urls")),
     path("users/", include("loaf.users.urls", namespace="users"),),
     path("projects/", include("loaf.projects.urls", namespace="projects"),),
+    path("posts/", include("loaf.posts.urls", namespace="posts"),),
     path("", views.ReactAppView.as_view()),
 
     # Your stuff: custom urls includes go here

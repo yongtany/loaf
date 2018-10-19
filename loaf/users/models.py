@@ -5,6 +5,8 @@ from taggit.managers import TaggableManager
 from django.utils.translation import ugettext_lazy as _
 
 
+
+
 class User(AbstractUser):
 
     """ User Model """
@@ -28,7 +30,6 @@ class User(AbstractUser):
     followers = models.ManyToManyField("self", blank=True)
     following = models.ManyToManyField("self", blank=True)
     tags = TaggableManager()
-
      
 
     def __str__(self):
@@ -45,3 +46,5 @@ class User(AbstractUser):
     @property
     def following_count(self):
         return self.following.all().count()
+
+

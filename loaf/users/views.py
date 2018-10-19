@@ -2,6 +2,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from . import models, serializers
+from loaf.projects import models as project_models
+from loaf.projects import serializers as project_serializers
 
 from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
@@ -293,6 +295,23 @@ class UsersRecommand(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+
+
+
+class JoinedProject(APIView):
+
+    def get(self, request, username, fomat=None):
+
+        found_user = models.User.objects.get(username=username)
+
+        if found_user is None :
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        found_joined = project_models.Join.objects.filter(joiner=found_user)
+
+        serializer = project_serializers.JoinedSerializer(found_joined, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
         
         

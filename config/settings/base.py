@@ -77,7 +77,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'loaf.users.apps.UsersAppConfig',
     # Your stuff: custom apps go here
-    'loaf.projects.apps.ProjectsConfig'
+    'loaf.projects.apps.ProjectsConfig',
+    'loaf.posts.apps.PostsConfig'
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -275,6 +276,10 @@ JWT_AUTH = {
 
 REST_AUTH_REGISTER_SERIALIZERS = {
     'REGISTER_SERIALIZER': 'loaf.users.serializers.SignUpSerializer'
+}
+
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER' : 'loaf.users.serializers.UserProfileSerializer'
 }
 
 

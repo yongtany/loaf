@@ -2,7 +2,7 @@
   "name": "loaf",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000",
+  "proxy": "http://192.168.43.109:8000",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",

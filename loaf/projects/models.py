@@ -1,6 +1,7 @@
 from django.db import models
 from loaf.users import models as user_models
 from taggit.managers import TaggableManager
+from django.contrib.postgres.fields import JSONField, ArrayField
 
 # Create your models here.
 
@@ -23,10 +24,14 @@ class Project(TimeStampedModel):
         user_models.User, on_delete=models.CASCADE, null=True, related_name="projects")
     tags = TaggableManager()
     score = models.IntegerField(default=0, null=True)
-    members = models.ManyToManyField(user_models.User)
-    max_member = models.TextField(default=0)
+    max_member = models.IntegerField(default=1)
     schedule = models.CharField(default=0, max_length=140)
-
+    apt = ArrayField(models.CharField(max_length = 1000), default = list)
+    apt_score = ArrayField(models.IntegerField(),size=50 ,default = list)
+    # 프로젝트 준비중, 시작, 완료의 상태를 정의하는 필드 (0:준비 1:시작 2:완료)
+    project_status = models.IntegerField(default=0)
+    
+   
 
     @property
     def like_count(self):
@@ -45,6 +50,13 @@ class Project(TimeStampedModel):
 
     class Meta:
         ordering = ['-created_at']
+
+
+
+class OngoingProject(TimeStampedModel):
+    """ On going Project Model """
+
+
 
 class Comment(TimeStampedModel):
 
@@ -65,14 +77,22 @@ class Like(TimeStampedModel):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='likes')
 
     def __str__(self) :
-        return 'User: {} - Project Caption: {}'.format(self.creator.username, self.project.caption)
+        return 'User: {} - Project Caption: {}'.format(self.creator.username, self.project.title)
 
 class Join(TimeStampedModel):
 
     """Join Modle """
 
-    creator = models.ForeignKey(user_models.User, on_delete=models.CASCADE, null=True)
+    joiner = models.ForeignKey(user_models.User, on_delete=models.CASCADE, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='join')
 
+    @property
+    def project_title(self):
+        return self.project.title
+
+    @property
+    def project_caption(self):
+        return self.project.caption
+
     def __str__(self):
-        return 'User: {} - Project Caption: {}'.format(self.creator.username, self.project.caption)
+        return 'User: {} - Project Caption: {}'.format(self.joiner.username, self.project.title)

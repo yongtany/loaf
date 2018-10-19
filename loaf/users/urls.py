@@ -24,6 +24,11 @@ urlpatterns = [
         name='user_profile'
     ),
     url(
+        regex=r'^(?P<username>\w+)/joinedProjects/$',
+        view=views.JoinedProject.as_view(),
+        name="joined_projects"
+    ),
+    url(
         regex=r'(?P<user_id>[0-9]+)/follow/$',
         view=views.FollowUser.as_view(),
         name='follow_user'

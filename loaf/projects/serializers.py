@@ -1,6 +1,7 @@
 from rest_framework import serializers
 from taggit_serializer.serializers import (TagListSerializerField,
                                            TaggitSerializer)
+
 from . import models
 from loaf.users import models as user_models
 
@@ -15,7 +16,8 @@ class CountProjectSerializer(serializers.ModelSerializer):
             'comment_count',
             'like_count',
             'score',
-            'members',
+            'apt',
+            'project_status'
         )
 
 class FeedUserSerializer(serializers.ModelSerializer):
@@ -46,18 +48,9 @@ class LikeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Like
-        fields = '__all__'
+        fields = '__all__' # export..?
 
-class JoinSerializer(serializers.ModelSerializer):
 
-    creator = FeedUserSerializer(read_only=True)
-
-    class Meta:
-        model = models.Join
-        fields = (
-            'id',
-            'creator',
-        )
 
 class MemberSerializer(serializers.ModelSerializer):
 
@@ -66,6 +59,17 @@ class MemberSerializer(serializers.ModelSerializer):
         fields = (
             'username',
             'profile_image'
+        )
+
+class JoinSerializer(serializers.ModelSerializer):
+
+    joiner = MemberSerializer(read_only=True)
+    
+    class Meta:
+        model = models.Join
+        fields = (
+            'id',
+            'joiner'
         )
 
 class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
@@ -90,12 +94,15 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
             'join',
             'member_count',
             'max_member',
-            'schedule'
+            'schedule',
+            'apt',
+            'apt_score',
+            'project_status',
         )
 
 class InputProjectSerializer(serializers.ModelSerializer):
 
-    tags = TagListSerializerField()
+    tags = TagListSerializerField() #다운받음
 
     class Meta:
         model = models.Project
@@ -105,5 +112,36 @@ class InputProjectSerializer(serializers.ModelSerializer):
             'caption',
             'max_member',
             'schedule',
-            'tags'
+            'tags',
+            'apt' #필요자질
         )
+
+class APTSerializer(serializers.ModelSerializer):  #지원하기 눌렀을때 자질보여주기
+
+    class Meta:
+        model = models.Project
+        fields = (
+            'apt',
+        )
+
+class JoinedProjectSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Project
+        fields = (
+            'title',
+            'caption'
+        )
+
+class JoinedSerializer(serializers.ModelSerializer):
+
+
+    class Meta:
+        model = models.Join
+        fields = (
+            'project',
+            'project_title',
+            'project_caption'
+        )
+
+

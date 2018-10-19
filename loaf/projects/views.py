@@ -10,13 +10,13 @@ class Projects(APIView):
 
     def get(self, request, format=None):
 
-        last_five = models.Project.objects.all().order_by('-created_at')
+        last_five = models.Project.objects.all().order_by('-created_at') #모든 데이터 가져옴, .order_by(<데이터 키(-:내림차순)>)//데이터 키에따라 정렬
 
         serializer = serializers.ProjectSerializer(last_five, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request, format=None):
+    def post(self, request, format=None): #foramt=> output의 출력 형태
 
         user = request.user
 
@@ -24,12 +24,12 @@ class Projects(APIView):
 
         if serializer.is_valid():
 
-            serializer.save(creator=user)
+            serializer.save(creator=user) #user를 업데이트 .save() =업데이트
             
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else :
-            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST) #오류처리
 
 
 class LikeProject(APIView):
@@ -40,7 +40,7 @@ class LikeProject(APIView):
 
         likes_creators_ids = likes.values('creator_id')
 
-        users = user_models.User.objects.filter(id__in=likes_creators_ids)
+        users = user_models.User.objects.filter(id__in=likes_creators_ids) #filter(__in :주어진 리스트 안의 자료검색)
 
         serializer = user_serializers.ListUserSerializer(users, many=True)
 
@@ -213,13 +213,13 @@ class Comment(APIView):
 
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-class JoinProject(APIView):
+class JoinProject(APIView): #참여자 리스트 가져오기
 
     def get(self, request, project_id, fomat=None):
 
         members = models.Join.objects.filter(project_id=project_id)
 
-        join_members_ids = members.values('creator_id')
+        join_members_ids = members.values('joiner_id')
 
         users = user_models.User.objects.filter(id__in=join_members_ids)
 
@@ -239,7 +239,7 @@ class JoinProject(APIView):
 
         try:
             preexisiting_join = models.Join.objects.get(
-                creator=user,
+                joiner=user,
                 project=found_project
             )
             return Response(status=status.HTTP_304_NOT_MODIFIED)
@@ -247,7 +247,7 @@ class JoinProject(APIView):
         except models.Join.DoesNotExist:
 
             new_join = models.Join.objects.create(
-                creator=user,
+                joiner=user,
                 project=found_project
             )
 
@@ -277,6 +277,76 @@ class ProjectsRecommand(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+class AptView(APIView):
+
+    def get(self, request, project_id, format=True):
+
+        user = request.user
         
+        try:
+            project = models.Project.objects.get(id=project_id)
+        except models.Project.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.APTSerializer(project, context={'request': request})
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+class DropMember(APIView): #개설자가 참여자 -> 확정자
+
+    def post(self, request, project_id, join_id, format=None):
+
+        try:
+            found_project = models.Project.objects.filter(id=project_id)
+            all_joiner = models.Join.objects.all()
+            all_joiner.filter(id=join_id).delete()
+            
+        except models.Project.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        return Response(status=status.HTTP_200_OK)
+
+class OngoingProject(APIView):
+
+    def post(self, request, project_id, format=None):
+        user = request.user #요청보낸 유저 (로긘된) 
+        pstatus = models.Project.objects.get(id = project_id)
+        master_user = pstatus.creator
+        if user == master_user:
+            try:
+                pstatus.project_status = '1'
+                pstatus.save()
+                return Response(status=status.HTTP_200_OK)
+
+            except models.Project.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+        else : 
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
+
+class CompletedProject(APIView):
+
+    def post(self, request, project_id, format=None):
+        user = request.user #요청보낸 유저 (로긘된) 
+        pstatus = models.Project.objects.get(id = project_id)
+        master_user = pstatus.creator
         
+        if user == master_user:
+            try:
+                pstatus.project_status = '2'
+                pstatus.save()
+
+                return Response(status=status.HTTP_200_OK)
+
+            except models.Project.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+
+        else : 
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
+
+
+
+
+
+
         

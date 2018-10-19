@@ -18,6 +18,7 @@ class UserProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
     class Meta:
         model = models.User
         fields = (
+            'pk',
             'profile_image',
             'username',
             'name',
@@ -95,4 +96,15 @@ class SignUpSerializer(RegisterSerializer):
         setup_user_email(request, user, [])
         user.save()
         return user
+
+class InputAPTScoreSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.User
+        fields = (
+            'score'  
+        )
+
+
+
         

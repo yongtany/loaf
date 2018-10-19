@@ -47,3 +47,13 @@ class CommentAdmin(admin.ModelAdmin):
         'created_at',
         'updated_at',
     )
+
+@admin.register(models.Join)
+class JoinAdmin(admin.ModelAdmin):
+    
+    list_display = (
+        'joiner',
+        'project',
+        'created_at',
+        'updated_at',
+    )
