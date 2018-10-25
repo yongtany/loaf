@@ -5,6 +5,7 @@ from . import models, serializers
 from loaf.users import models as user_models
 from loaf.users import serializers as user_serializers
 
+
 # Create your views here.
 class Projects(APIView):
 
@@ -343,6 +344,23 @@ class CompletedProject(APIView):
 
         else : 
             return Response(status=status.HTTP_304_NOT_MODIFIED)
+
+
+
+class PutApt(APIView):
+
+    def post(self, request, project_id, format=True):
+
+        user = request.user
+        
+        try:
+            found_project = models.Project.objects.get(id=project_id)
+        except models.Project.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.APTSerializer(project, context={'request': request})
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
 
 

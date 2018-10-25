@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 
 
 
-
 class User(AbstractUser):
 
     """ User Model """
@@ -46,5 +45,4 @@ class User(AbstractUser):
     @property
     def following_count(self):
         return self.following.all().count()
-
 

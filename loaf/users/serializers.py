@@ -11,8 +11,6 @@ class UserProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     projects = projects_serializer.CountProjectSerializer(many=True, read_only=True)
     post_count = serializers.ReadOnlyField()  # ReadOnly 해당필드들을 수정하지 않는다.
-    followers_count = serializers.ReadOnlyField()
-    following_count = serializers.ReadOnlyField()
     tags = TagListSerializerField()
 
     class Meta:
@@ -26,8 +24,6 @@ class UserProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
             'bio',
             'website',
             'post_count',
-            'followers_count',
-            'following_count',
             'projects',
             'tags',
             'address',

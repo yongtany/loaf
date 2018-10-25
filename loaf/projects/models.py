@@ -54,6 +54,7 @@ class Project(TimeStampedModel):
 
 
 class OngoingProject(TimeStampedModel):
+    
     """ On going Project Model """
 
 
@@ -96,3 +97,6 @@ class Join(TimeStampedModel):
 
     def __str__(self):
         return 'User: {} - Project Caption: {}'.format(self.joiner.username, self.project.title)
+
+
+
