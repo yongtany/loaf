@@ -17,7 +17,7 @@ class CountProjectSerializer(serializers.ModelSerializer):
             'like_count',
             'score',
             'apt',
-            'project_status'
+            'scores_apt'
         )
 
 class FeedUserSerializer(serializers.ModelSerializer):
@@ -69,7 +69,8 @@ class JoinSerializer(serializers.ModelSerializer):
         model = models.Join
         fields = (
             'id',
-            'joiner'
+            'joiner',
+            'score_apt'
         )
 
 class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
@@ -96,7 +97,7 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
             'max_member',
             'schedule',
             'apt',
-            'apt_score',
+            'scores_apt',
             'project_status',
         )
 
@@ -135,13 +136,20 @@ class JoinedProjectSerializer(serializers.ModelSerializer):
 
 class JoinedSerializer(serializers.ModelSerializer):
 
-
     class Meta:
         model = models.Join
         fields = (
             'project',
             'project_title',
             'project_caption'
+        )
+
+class AptScoreInputSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = models.Join
+        fields = (
+            'score_apt',
         )
 
 

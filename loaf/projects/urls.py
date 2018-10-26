@@ -14,11 +14,6 @@ urlpatterns = [
         name='recommand_projects'
     ),
     url(
-        regex=r'^(?P<username>\w+)/recommand/$',
-        view=views.RecommandProject.as_view(),
-        name='project_recommand'
-    ),
-    url(
         regex=r'^(?P<project_id>[0-9]+)/$',
         view=views.ProjectDetail.as_view(),
         name='project_detail'
@@ -53,6 +48,12 @@ urlpatterns = [
         view=views.JoinProject.as_view(),
         name="join_project"
     ),
+    # 지원하기 후 apt_score 다시 입력
+#    url(
+#        regex=r'^(?P<project_id>[0-9]+)/aptscore/(?P<join_id>[0-9]+)/$',
+#        view=views.PutAptScore.as_view(),
+#        name="apt_score"
+#    )
     url(
         regex=r'^(?P<project_id>[0-9]+)/apt/$',
         view=views.AptView.as_view(),
@@ -74,5 +75,5 @@ urlpatterns = [
         view=views.CompletedProject.as_view(),
         name="completed_project"
     ),
-    
 ]
+

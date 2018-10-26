@@ -88,7 +88,7 @@ class UnLikeProject(APIView):
         try:
             preexisiting_like = models.Like.objects.get(
                 creator=user,
-                image__id=project_id
+                project__id=project_id
             )
             preexisiting_like.delete()
 
@@ -106,7 +106,7 @@ class ModerateComments(APIView):
 
         try:
             comment_to_delete = models.Comment.objects.get(
-                id=comment_id, image__id=project_id, image__creator=user)
+                id=comment_id, project__id=project_id, project__creator=user)
             comment_to_delete.delete()
         except models.Comment.DoesNotExist:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -214,8 +214,11 @@ class Comment(APIView):
 
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-class JoinProject(APIView): #참여자 리스트 가져오기
 
+
+class JoinProject(APIView): 
+
+    ## 지원자 리스트만 가져오기
     def get(self, request, project_id, fomat=None):
 
         members = models.Join.objects.filter(project_id=project_id)
@@ -228,7 +231,7 @@ class JoinProject(APIView): #참여자 리스트 가져오기
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
-
+    ## apt_score 등록과 함께 score_apt로 등록!
     def post(self, request, project_id, format=None):
 
         user = request.user
@@ -247,16 +250,18 @@ class JoinProject(APIView): #참여자 리스트 가져오기
 
         except models.Join.DoesNotExist:
 
-            new_join = models.Join.objects.create(
-                joiner=user,
-                project=found_project
-            )
+            serializer = serializers.AptScoreInputSerializer(data=request.data)
 
-            new_join.save()
+            if serializer.is_valid():
 
-            return Response(status=status.HTTP_201_CREATED)
+                serializer.save(joiner=user, project=found_project) #user를 업데이트 .save() =업데이트
+                
+                return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
+            else :
+                return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST) #오류처리
 
+"""
 class RecommandProject(APIView):
 
     def get(slef, request, formnat=None):
@@ -266,6 +271,7 @@ class RecommandProject(APIView):
         print(user)
 
         return None
+"""
 
 
 class ProjectsRecommand(APIView):
@@ -361,6 +367,44 @@ class PutApt(APIView):
         serializer = serializers.APTSerializer(project, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+## 지원하기 후 apt_score 다시 입력
+"""
+class PutAptScore(APIView):
+
+    def post(self, request, project_id, join_id, format=None):
+
+        user = request.user
+
+        try:
+            found_project = models.Project.objects.get(id=project_id)
+        except models.Project.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+        try:
+            found_joiner = models.Join.objects.get(id=join_id)
+        except models.Join.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.AptScoreInputSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(joiner=user, project=found_project) #user를 업데이트 .save() =업데이트
+            
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else :
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST) #오류처리
+"""
+
+        
+
+        
+
+
 
 
 
