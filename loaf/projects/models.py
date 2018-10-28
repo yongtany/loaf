@@ -88,8 +88,6 @@ class Join(TimeStampedModel):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='join')
     score_apt = models.IntegerField(default=0)
     
-    
-    
 
     @property
     def project_title(self):

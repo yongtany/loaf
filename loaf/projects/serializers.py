@@ -17,7 +17,6 @@ class CountProjectSerializer(serializers.ModelSerializer):
             'like_count',
             'score',
             'apt',
-            'scores_apt'
         )
 
 class FeedUserSerializer(serializers.ModelSerializer):
@@ -97,7 +96,6 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
             'max_member',
             'schedule',
             'apt',
-            'scores_apt',
             'project_status',
         )
 
