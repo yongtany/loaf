@@ -21,7 +21,8 @@ class Projects(APIView):
 
         user = request.user
 
-        serializer = serializers.InputProjectSerializer(data=request.data)
+        serializer = serializers.InputProjectSerializer(
+                data=request.data, partial=True)
 
         if serializer.is_valid():
 

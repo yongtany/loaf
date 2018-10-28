@@ -99,7 +99,7 @@ class ProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
             'project_status',
         )
 
-class InputProjectSerializer(serializers.ModelSerializer):
+class InputProjectSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     tags = TagListSerializerField() #다운받음
 
