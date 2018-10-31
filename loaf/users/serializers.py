@@ -31,6 +31,7 @@ class UserProfileSerializer(TaggitSerializer, serializers.ModelSerializer):
         )
 
 
+
 class ListUserSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     tags = TagListSerializerField()
@@ -100,6 +101,22 @@ class InputAPTScoreSerializer(serializers.ModelSerializer):
         fields = (
             'score'  
         )
+
+
+class SendEmailSerializer(serializers.ModelSerializer):
+
+    creator = JoinMemberSerializer()
+ 
+
+    class Meta:
+        model = models.Mail
+        fields =(
+            'creator',
+            'subject',
+            'message'
+        )
+
+
 
 
 

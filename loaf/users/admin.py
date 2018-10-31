@@ -2,13 +2,13 @@ from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as AuthUserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
-from .models import User
+from . import models
 
 
 class MyUserChangeForm(UserChangeForm):
 
     class Meta(UserChangeForm.Meta):
-        model = User
+        model = models.User
 
 class MyUserCreationForm(UserCreationForm):
 
@@ -17,7 +17,7 @@ class MyUserCreationForm(UserCreationForm):
     )
 
     class Meta(UserCreationForm.Meta):
-        model = User
+        model = models.User
 
     def clean_username(self):
         username = self.cleaned_data["username"]
@@ -29,7 +29,7 @@ class MyUserCreationForm(UserCreationForm):
         raise forms.ValidationError(self.error_messages["duplicate_username"])
 
 
-@admin.register(User)
+@admin.register(models.User)
 class MyUserAdmin(AuthUserAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
@@ -39,3 +39,14 @@ class MyUserAdmin(AuthUserAdmin):
     ) + AuthUserAdmin.fieldsets
     list_display = ("username", "name", "is_superuser")
     search_fields = ["name"]
+
+@admin.register(models.Mail)
+class MailAdmin(admin.ModelAdmin):
+    
+    list_display = (
+        'creator',
+        'created_at',
+        'updated_at',
+        'subject',
+        'message'
+    )

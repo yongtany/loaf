@@ -53,5 +53,10 @@ urlpatterns = [
         view=views.UserFollowing.as_view(),
         name='user_following'
     ),
+    url(
+        regex=r'^(?P<username>\w+)/sendEmail/$',
+        view=views.SendingEmail.as_view(),
+        name='send_email'
+    ),
     
 ]

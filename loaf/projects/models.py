@@ -82,7 +82,7 @@ class Like(TimeStampedModel):
 
 class Join(TimeStampedModel):
 
-    """Join Modle """
+    """Join Model """
 
     joiner = models.ForeignKey(user_models.User, on_delete=models.CASCADE, null=True)
     project = models.ForeignKey(Project, on_delete=models.CASCADE, related_name='join')

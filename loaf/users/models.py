@@ -4,7 +4,13 @@ from django.urls import reverse
 from taggit.managers import TaggableManager
 from django.utils.translation import ugettext_lazy as _
 
+class TimeStampedModel(models.Model):
 
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        abstract = True
 
 class User(AbstractUser):
 
@@ -45,4 +51,16 @@ class User(AbstractUser):
     @property
     def following_count(self):
         return self.following.all().count()
+
+
+class Mail(TimeStampedModel):
+
+    """ Mail Model """
+
+    creator = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    subject = models.TextField()
+    message = models.TextField()
+
+    def __str__(self):
+        return 'Mail Sender: {} - Mail subject: {}'.format(self.creator.username, self.subject)
 

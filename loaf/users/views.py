@@ -9,6 +9,10 @@ from allauth.socialaccount.providers.facebook.views import FacebookOAuth2Adapter
 from rest_auth.registration.views import SocialLoginView
 
 
+from django.core.mail import send_mail
+from django.conf import settings
+
+
 class ExploreUsers(APIView):
 
     def get(self, request, format=None):
@@ -268,6 +272,52 @@ class UsersRecommand(APIView):
         serializer = serializers.ListUserSerializer(recommand, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+class SendingEmail(APIView):
+
+    def post(self, request, username, fomat=None):
+
+        user = request.user
+
+        user_email = user.email
+
+        # print(user_email)
+
+        try:
+            fount_email_recipient = models.User.objects.get(username=username)
+        except models.User.DoesNotExist :
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        recipient_email = fount_email_recipient.email
+
+        # print(recipient_email)
+
+        serializer = serializers.SendEmailSerializer(
+                data=request.data, partial=True)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user) 
+
+
+            subject = list(serializer.data.items())[1][1]
+
+            message = list(serializer.data.items())[2][1]
+            
+            send_mail(
+                subject=subject, 
+                message=message, 
+                from_email=settings.EMAIL_HOST_USER, 
+                recipient_list=[recipient_email], 
+                fail_silently=False
+            )
+            
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else :
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST) #오류처리
+
+        
 
 
 
