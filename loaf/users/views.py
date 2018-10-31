@@ -258,6 +258,7 @@ class RecommandUser(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+
 class UsersRecommand(APIView):
 
     def get(self, request, format=None):
@@ -285,6 +286,51 @@ class JoinedProject(APIView):
         serializer = project_serializers.JoinedSerializer(found_joined, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+
+class JoinedCompletedProject(APIView):
+
+    def get(self, request, username, fomat=None):
+
+        found_user = models.User.objects.get(username=username)
+
+        if found_user is None :
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        found_joined = project_models.Join.objects.filter(joiner=found_user)
+
+        serializer = project_serializers.JoinedSerializer(found_joined, many=True)
+
+        completed_project = []
+        
+        for value in serializer.data:
+
+            joined_projects = list(value.items())
+
+            joined_projects_statuses =  joined_projects[3]
+
+            if joined_projects_statuses[1] == 2 :
+
+                completed_project.append(value)
+
+        #print(completed_project)
+
+       
+        """
+
+        for key in joined_projects :
+
+            completed_project = []
+
+            if joined_projects[key].get('project_status') == '2' :
+
+                completed_project.append(joined_projects[key])
+
+        """
+ 
+
+        return Response(data=completed_project, status=status.HTTP_200_OK)
 
         
         

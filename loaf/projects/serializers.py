@@ -125,6 +125,7 @@ class APTSerializer(serializers.ModelSerializer):  #지원하기 눌렀을때 �
 
 class JoinedProjectSerializer(serializers.ModelSerializer):
 
+
     class Meta:
         model = models.Project
         fields = (
@@ -132,14 +133,18 @@ class JoinedProjectSerializer(serializers.ModelSerializer):
             'caption'
         )
 
-class JoinedSerializer(serializers.ModelSerializer):
+class JoinedSerializer(TaggitSerializer, serializers.ModelSerializer):
+
+    project_tags = TagListSerializerField()
 
     class Meta:
         model = models.Join
         fields = (
             'project',
             'project_title',
-            'project_caption'
+            'project_caption',
+            'project_status',
+            'project_tags'
         )
 
 class AptScoreInputSerializer(serializers.ModelSerializer):

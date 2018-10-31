@@ -97,5 +97,13 @@ class Join(TimeStampedModel):
     def project_caption(self):
         return self.project.caption
 
+    @property
+    def project_status(self):
+        return self.project.project_status
+
+    @property
+    def project_tags(self):
+        return self.project.tags
+
     def __str__(self):
         return 'User: {} - Project Caption: {}'.format(self.joiner.username, self.project.title)

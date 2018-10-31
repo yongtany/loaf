@@ -48,7 +48,8 @@ urlpatterns = [
         view=views.JoinProject.as_view(),
         name="join_project"
     ),
-    # 지원하기 후 apt_score 다시 입력
+    
+# 지원하기 후 apt_score 다시 입력
 #    url(
 #        regex=r'^(?P<project_id>[0-9]+)/aptscore/(?P<join_id>[0-9]+)/$',
 #        view=views.PutAptScore.as_view(),
