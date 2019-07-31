@@ -1,6 +1,6 @@
 <h1 align="center">
 <br>
-  <a href="https://github.com/yongtany"><img src="https://i.imgur.com/C4X4AUB.png" alt="Express MongoDB Server" width="128"></a>
+  <a href="https://github.com/yongtany"><img src="https://icon-library.net/images/bread-icon/bread-icon-0.jpg" alt="Loaf" width="128"></a>
 <br>
 <br>
 Loaf
@@ -21,31 +21,35 @@ Loaf
 
 ## Introduction
 
-I create this for helping people to make their own rest api and maybe use it as your boilerplate
+Team member and project recommendation platform through user data analysis and project evaluation algorithm.
 
 ## Features
 
-This rest api gonna be for a Medium like website. This is a simple blog place where people can follow author and create a post. People can like the post and get notification when a user they follow create a new one.
+You can recommend a team member who is similar to your area of interest.
+You can recommend projects that are similar to your interests.
 
 - Authentication local + jwt
-- User can create a post
-- User can delete is own post and update it
-- User can follow an other one
-- User get notification on following new post
-- User can like a post
-- User can see all the post they like 
+- User can create a project
+- User recommended for the project.
+- User can take part in a project
+- User can evaluate the project.
+- User can like a project.
+- User can follow another user.
+- User recommanded team member.
 
 ## Getting started
 
-1. Clone this repo using `https://github.com/yongtany/Express-and-MongoDB-RestAPI`
-2. Move to the appropriate directory: `cd express-mongodb-server`.
-4. Run `yarn` or `npm install` to install dependencies.
-5. Set `.env` file with your mongoURI.
-6. Run `npm start` to see the example app at `http://localhost:4000/`.
+1. Clone this repo using `https://github.com/yongtany/loaf`
+2. Move to the appropriate directory: `cd loaf`.
+3. Move to virtual environment 'pipenv --three && pipenv shell'
+4. Run `pipenv install` to install dependencies.
+5. `CREATE DATABASE loaf`.
+6. Run`python manage.py makemigrations && python manage.py migrate` to migrate database.
+7. Run `pipenv manage.py runserver` to see the example app at `http://localhost:8000/`.
 
 ## Commands
 
-- `npm start` - start at `http://localhost:4000/`
+- `python manage.py runserver` - start at `http://localhost:8000/`
 
 ## License
 
