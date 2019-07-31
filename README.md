@@ -28,7 +28,6 @@ Team member and project recommendation platform through user data analysis and p
 You can recommend a team member who is similar to your area of interest.
 You can recommend projects that are similar to your interests.
 
-- Authentication local + jwt
 - User can create a project
 - User recommended for the project.
 - User can take part in a project
